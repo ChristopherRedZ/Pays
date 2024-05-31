@@ -34,13 +34,16 @@
                 data.forEach(function(article) {
                     let titre = article.title.rendered;
                     let contenu = article.content.rendered;
+                    let thumbnail = article._embedded && article._embedded['wp:featuredmedia'] ? article._embedded['wp:featuredmedia'][0].source_url : '';
+
                     console.log(titre);
                     let carte = document.createElement("div");
                     carte.classList.add("carte-restapi");
                     //Application des carte créer dans la page
                     carte.innerHTML = `
-                        <h2>${titre}</h2>
-                        <p>${contenu}</p>
+                    ${thumbnail ? `<img src="${thumbnail}" alt="${titre}" class="thumbnail">` : ''}
+                    <h2>${titre}</h2>
+                    <p>${contenu}</p>
                     `;
                     restapi.appendChild(carte);
                 });
