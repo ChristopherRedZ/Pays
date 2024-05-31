@@ -7,7 +7,7 @@
 Plugin name: Pays
 Plugin uri: https://github.com/ChristopherRedZ
 Version: 1.0.0
-Description: Permet d'afficher les destinations par bouton de pays
+Description: Permet d'afficher les destinations par pays
 */
 echo header("Access-Control-Allow-Origin: http://localhost");
 
@@ -20,23 +20,23 @@ function pays_enqueue() {
 }
 add_action('wp_enqueue_scripts', 'pays_enqueue');
 
-// Function to create buttons based on the list of countries
+// Fonction pour créer des bouttons basé sur les noms de pays si dessous
 function creation_bouton_pays() {
-    $countries = array("France", "États-Unis", "Canada", "Argentine", "Chili", "Belgique", "Maroc", "Mexique", "Japon", "Italie", "Islande", "Chine", "Grèce", "Suisse");
+    $LesPays = array("France", "États-Unis", "Canada", "Argentine", "Chili", "Belgique", "Maroc", "Mexique", "Japon", "Italie", "Islande", "Chine", "Grèce", "Suisse");
     $buttons = '';
 
-    foreach ($countries as $country) {
-        $buttons .= '<button class="country-button" data-country-name="' . esc_attr($country) . '">' . esc_html($country) . '</button>';
+    foreach ($LesPays as $Pays) {
+        $buttons .= '<button class="bouton-pays" data-country-name="' . esc_attr($Pays) . '">' . esc_html($Pays) . '</button>';
     }
 
     return $buttons;
 }
 
-// Function to create the destination list
+// Fonction pour créer la liste de destination
 function creation_destinations_pays() {
     $buttons = creation_bouton_pays();
-    $contenu = '<div class="country-buttons">' . $buttons . '</div>
-    <div class="contenu__restapi"></div>';
+    $contenu = '<div class="boutons-pays">' . $buttons . '</div>
+    <div class="contenu-restapi"></div>';
     return $contenu;
 }
 
