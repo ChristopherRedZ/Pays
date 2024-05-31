@@ -7,12 +7,13 @@
         buttons.forEach(button => {
             button.addEventListener('click', function() {
                 const NomsPays = this.getAttribute('data-country-name');
-                fetchPostsByCountry(NomsPays);
+                fetchPostsParPays(NomsPays);
             });
         });
     });
 
-    function fetchPostsByCountry(NomsPays) {
+    function fetchPostsParPays(NomsPays) {
+        //Recherche des noms des pays
         let url = `https://gftnth00.mywhc.ca/tim26/wp-json/wp/v2/posts?search=${encodeURIComponent(NomsPays)}`;
 
         // Efface le contenu Précédent
@@ -36,7 +37,7 @@
                     console.log(titre);
                     let carte = document.createElement("div");
                     carte.classList.add("carte-restapi");
-
+                    //Application des carte créer dans la page
                     carte.innerHTML = `
                         <h2>${titre}</h2>
                         <p>${contenu}</p>
@@ -44,6 +45,7 @@
                     restapi.appendChild(carte);
                 });
             })
+            // Phrase d'erreur dans le cas contraire
             .catch(function(error) {
                 console.error("Erreur lors de la récupération des données :", error);
             });
