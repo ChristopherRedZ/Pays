@@ -23,19 +23,19 @@ add_action('wp_enqueue_scripts', 'pays_enqueue');
 // Fonction pour créer des bouttons basé sur les noms de pays si dessous
 function creation_bouton_pays() {
     $LesPays = array("France", "États-Unis", "Canada", "Argentine", "Chili", "Belgique", "Maroc", "Mexique", "Japon", "Italie", "Islande", "Chine", "Grèce", "Suisse");
-    $buttons = '';
+    $boutons = '';
 
     foreach ($LesPays as $Pays) {
-        $buttons .= '<button class="bouton-pays" data-country-name="' . esc_attr($Pays) . '">' . esc_html($Pays) . '</button>';
+        $boutons .= '<button class="bouton-pays" data-nom-pays="' . esc_attr($Pays) . '">' . esc_html($Pays) . '</button>';
     }
 
-    return $buttons;
+    return $boutons;
 }
 
 // Fonction pour créer la liste de destination
 function creation_destinations_pays() {
-    $buttons = creation_bouton_pays();
-    $contenu = '<div class="boutons-pays">' . $buttons . '</div>
+    $boutons = creation_bouton_pays();
+    $contenu = '<div class="boutons-pays">' . $boutons . '</div>
     <div class="contenu-restapi"></div>';
     return $contenu;
 }

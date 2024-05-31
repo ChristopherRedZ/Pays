@@ -6,7 +6,7 @@
 
         buttons.forEach(button => {
             button.addEventListener('click', function() {
-                const NomsPays = this.getAttribute('data-country-name');
+                const NomsPays = this.getAttribute('data-nom-pays');
                 fetchPostsParPays(NomsPays);
             });
         });
